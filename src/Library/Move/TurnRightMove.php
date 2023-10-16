@@ -2,19 +2,21 @@
 
 namespace App\Library\Move;
 
-use App\Interfaces\BotStateInterface;
-use App\Interfaces\Movable;
 use App\Library\Enums\DirectionEnum;
 
-class TurnRightMove extends Move implements Movable
+class TurnRightMove extends AbstractMove
 {
-    public function move(BotStateInterface $botState, int $steps): void
+    /**
+     * @param int $steps
+     * @return void
+     */
+    public function move(int $steps): void
     {
-        if (DirectionEnum::tryFrom($botState->getDirection())) {
-            $currentIndex = array_search($botState->getDirection(), $this->directions, true);
+        if (DirectionEnum::tryFrom($this->botState->getDirection())) {
+            $currentIndex = array_search($this->botState->getDirection(), $this->directions, true);
             $newIndex = ($currentIndex + $steps) % 4;
             $newDirection = $this->directions[$newIndex];
-            $botState->setDirection($newDirection);
+            $this->botState->setDirection($newDirection);
         }
     }
 }

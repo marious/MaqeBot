@@ -7,7 +7,7 @@ interface RunnerInterpreterInterface
     /**
      * @param string $command
      * @param int $steps
-     * @return mixed
+     * @return void
      */
-    public function execute(string $command, int $steps);
+    public function execute(string $command, int $steps): void;
 }

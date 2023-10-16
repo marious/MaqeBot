@@ -4,13 +4,13 @@ namespace App\Library;
 
 use App\Interfaces\BotStateInterface;
 use App\Interfaces\RunnerInterpreterInterface;
-use App\Library\Enums\MovableEnum;
-use App\Library\Move\TurnLeftMove;
-use App\Library\Move\TurnRightMove;
-use App\Library\Move\WalkForwardMove;
+use App\Library\Move\AbstractMove;
 
 class RunnerInterpreter implements RunnerInterpreterInterface
 {
+    /**
+     * @var array Available strategies of move algorithms
+     */
     private array $strategies;
 
     /**
@@ -18,13 +18,26 @@ class RunnerInterpreter implements RunnerInterpreterInterface
      */
     public function __construct(protected BotStateInterface $botState)
     {
-        $this->strategies = [
-            MovableEnum::L->value => new TurnLeftMove(),
-            MovableEnum::R->value => new TurnRightMove(),
-            MovableEnum::W->value => new WalkForwardMove(),
-        ];
+        $this->strategies = [];
     }
 
+    /**
+     * @return BotStateInterface
+     */
+    public function getBotState(): BotStateInterface
+    {
+        return $this->botState;
+    }
+
+    /**
+     * @param string $command
+     * @param AbstractMove $moveStrategy
+     * @return void
+     */
+    public function addMoveStrategy(string $command, AbstractMove $moveStrategy): void
+    {
+        $this->strategies[$command] = $moveStrategy;
+    }
 
     /**
      * @param string $command
@@ -34,7 +47,7 @@ class RunnerInterpreter implements RunnerInterpreterInterface
     public function execute(string $command, int $steps): void
     {
         if (array_key_exists($command, $this->strategies)) {
-            $this->strategies[$command]->move($this->botState, $steps);
+            $this->strategies[$command]->move($steps);
         }
     }
 }
