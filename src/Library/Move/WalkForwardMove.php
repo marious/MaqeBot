@@ -4,26 +4,32 @@ namespace App\Library\Move;
 
 use App\Interfaces\BotStateInterface;
 use App\Interfaces\Movable;
+use App\Library\Enums\DirectionEnum;
 
-class WalkForwardMove implements Movable
+class WalkForwardMove extends Move implements Movable
 {
 
-    public function move(BotStateInterface $botState, int $rounds)
+    /**
+     * @param BotStateInterface $botState
+     * @param int $steps
+     * @return void
+     */
+    public function move(BotStateInterface $botState, int $steps): void
     {
         $currentDirection = $botState->getDirection();
 
         switch ($currentDirection) {
-            case 'North':
-                $botState->setY($botState->getY() + $rounds);
+            case DirectionEnum::NORTH->value:
+                $botState->setY($botState->getY() + $steps);
                 break;
-            case 'East':
-                $botState->setX($botState->getX() + $rounds);
+            case DirectionEnum::EAST->value:
+                $botState->setX($botState->getX() + $steps);
                 break;
-            case 'South':
-                $botState->setY($botState->getY() - $rounds);
+            case DirectionEnum::SOUTH->value:
+                $botState->setY($botState->getY() - $steps);
                 break;
-            case 'West':
-                $botState->setX($botState->getX() - $rounds);
+            case DirectionEnum::WEST->value:
+                $botState->setX($botState->getX() - $steps);
                 break;
         }
     }

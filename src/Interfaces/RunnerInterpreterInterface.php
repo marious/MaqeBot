@@ -6,8 +6,8 @@ interface RunnerInterpreterInterface
 {
     /**
      * @param string $command
-     * @param int $rounds
+     * @param int $steps
      * @return mixed
      */
-    public function execute(string $command, int $rounds);
+    public function execute(string $command, int $steps);
 }

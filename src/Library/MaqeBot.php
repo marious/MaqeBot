@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Library;
 
 use App\Interfaces\BotInterface;
@@ -8,10 +9,10 @@ use App\Interfaces\HandlerInterface;
 class MaqeBot implements BotInterface
 {
     /**
-     * @param BotStateInterface $bootState
+     * @param BotStateInterface $botState
      * @param RunnerInterpreter $runnerInterpreter
      */
-    public function __construct(protected BotStateInterface $bootState, protected RunnerInterpreter $runnerInterpreter)
+    public function __construct(protected BotStateInterface $botState, protected RunnerInterpreter $runnerInterpreter)
     {
     }
 
@@ -19,11 +20,11 @@ class MaqeBot implements BotInterface
      * @param HandlerInterface $run
      * @return BotStateInterface
      */
-    public function run(HandlerInterface $run)
+    public function run(HandlerInterface $run): BotStateInterface
     {
         foreach ($run->getCommandArr() as $key => $value) {
-            $rounds = $this->getStepsCount($run->getCommandArr(), $key);
-            $this->runnerInterpreter->execute($value, $rounds);
+            $steps = $this->getStepsCount($run->getCommandArr(), $key);
+            $this->runnerInterpreter->execute($value, $steps);
         }
         return $this->bootState;
     }
@@ -35,10 +36,10 @@ class MaqeBot implements BotInterface
      */
     private function getStepsCount($command, $key): int
     {
-        $rounds = 1;
+        $steps = 1;
         if (isset($command[$key + 1]) && is_numeric($command[$key + 1])) {
-            $rounds = $command[$key + 1];
+            $steps = $command[$key + 1];
         }
-        return $rounds;
+        return $steps;
     }
 }

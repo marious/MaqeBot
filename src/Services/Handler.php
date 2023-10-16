@@ -25,7 +25,7 @@ class Handler implements HandlerInterface
     public function handle(): HandlerInterface
     {
         $this->commandArr = $this->parseCommands($this->command);
-         return $this;
+        return $this;
     }
 
     public function validateCommand(string $command): void

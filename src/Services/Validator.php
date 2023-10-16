@@ -2,9 +2,7 @@
 
 namespace App\Services;
 
-use App\Exceptions\InvalidCommandException;
 use App\Interfaces\ValidatorInterface;
-use Exception;
 
 class Validator implements ValidatorInterface
 {
