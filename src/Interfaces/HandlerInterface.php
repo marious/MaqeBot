@@ -5,6 +5,11 @@ namespace App\Interfaces;
 interface HandlerInterface
 {
     /**
+     * @param string $command
+     */
+    public function __construct(string $command);
+
+    /**
      * @return HandlerInterface
      */
     public function handle(): HandlerInterface;

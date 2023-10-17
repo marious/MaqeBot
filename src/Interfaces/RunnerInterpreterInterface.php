@@ -8,6 +8,11 @@ interface RunnerInterpreterInterface
 {
 
     /**
+     * @param BotStateInterface $botState
+     */
+    public function __construct(BotStateInterface $botState);
+
+    /**
      * @return BotStateInterface
      */
     public function getBotState(): BotStateInterface;

@@ -2,10 +2,15 @@
 
 namespace App\Interfaces;
 
-use App\Library\Move\AbstractMove;
+use App\Library\RunnerInterpreter;
 
 interface BotInterface
 {
+    /**
+     * @param RunnerInterpreter $runnerInterpreter\
+     */
+    public function __construct(RunnerInterpreter $runnerInterpreter);
+
     /**
      * @param HandlerInterface $handler
      * @return BotStateInterface
