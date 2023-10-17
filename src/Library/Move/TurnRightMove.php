@@ -6,6 +6,7 @@ use App\Library\Enums\DirectionEnum;
 
 class TurnRightMove extends AbstractMove
 {
+
     /**
      * @param int $steps
      * @return void

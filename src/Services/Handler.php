@@ -24,6 +24,7 @@ class Handler implements HandlerInterface
     {
         $this->validations = $validations;
         $this->validateCommand($command);
+        $this->handle();
     }
 
 

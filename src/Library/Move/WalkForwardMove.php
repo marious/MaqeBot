@@ -2,6 +2,7 @@
 
 namespace App\Library\Move;
 
+use App\Exceptions\InvalidCommandException;
 use App\Library\Enums\DirectionEnum;
 
 class WalkForwardMove extends AbstractMove
@@ -26,6 +27,8 @@ class WalkForwardMove extends AbstractMove
             case DirectionEnum::WEST->value:
                 $this->botState->setX($this->botState->getX() - $steps);
                 break;
+            default:
+                throw new InvalidCommandException();
         }
     }
 }

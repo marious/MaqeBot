@@ -2,6 +2,7 @@
 
 namespace App\Library;
 
+use App\Exceptions\InvalidRunnerStrategyException;
 use App\Interfaces\BotStateInterface;
 use App\Interfaces\RunnerInterpreterInterface;
 use App\Library\Move\AbstractMove;
@@ -49,5 +50,15 @@ class RunnerInterpreter implements RunnerInterpreterInterface
         if (array_key_exists($command, $this->strategies)) {
             $this->strategies[$command]->move($steps);
         }
+    }
+
+    /**
+     * @param string $command
+     * @return mixed
+     * @throws InvalidRunnerStrategyException
+     */
+    public function getMoveStrategy(string $command): AbstractMove
+    {
+        return $this->strategies[$command] ?? throw new InvalidRunnerStrategyException();
     }
 }
