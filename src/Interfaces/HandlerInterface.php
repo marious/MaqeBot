@@ -19,4 +19,10 @@ interface HandlerInterface
      * @return array
      */
     public function getCommandArr(): array;
+
+    /**
+     * @param ValidatorInterface $validator
+     * @return void
+     */
+    public function setValidator(ValidatorInterface $validator): void;
 }

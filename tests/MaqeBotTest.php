@@ -71,14 +71,14 @@ class MaqeBotTest extends TestCase
 
     private function createBotAndRun($command): BotStateInterface
     {
-        $validator = new Validator();
-        $handler = new Handler($command, [$validator]);
+        $handler = new Handler($command);
+        $handler->setValidator(new Validator());
         $botState = new MaqeBotState();
         $bot = new MaqeBot(new RunnerInterpreter($botState));
         $bot->addMoveStrategy(MovableEnum::L->value, new TurnLeftMove($botState));
         $bot->addMoveStrategy(MovableEnum::R->value, new TurnRightMove($botState));
         $bot->addMoveStrategy(MovableEnum::W->value, new WalkForwardMove($botState));
-        return $bot->run($handler);
+        return $bot->run($handler->handle());
     }
 
 }

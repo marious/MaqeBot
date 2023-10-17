@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Exceptions\InvalidCommandException;
 use App\Interfaces\HandlerInterface;
+use App\Interfaces\ValidatorInterface;
 
 class Handler implements HandlerInterface
 {
@@ -17,22 +18,20 @@ class Handler implements HandlerInterface
 
     /**
      * @param string $command
-     * @param array $validations
-     * @throws InvalidCommandException
      */
-    public function __construct(string $command, array $validations)
+    public function __construct(string $command)
     {
-        $this->validations = $validations;
-        $this->validateCommand($command);
-        $this->handle();
+        $this->command = $command;
     }
 
 
     /**
      * @return HandlerInterface
+     * @throws InvalidCommandException
      */
     public function handle(): HandlerInterface
     {
+        $this->validateCommand($this->command);
         $this->commandArr = $this->parseCommands($this->command);
         return $this;
     }
@@ -59,6 +58,15 @@ class Handler implements HandlerInterface
     public function getCommandArr(): array
     {
         return $this->commandArr;
+    }
+
+    /**
+     * @param ValidatorInterface $validator
+     * @return void
+     */
+    public function setValidator(ValidatorInterface $validator): void
+    {
+        $this->validations[] = $validator;
     }
 
     /**

@@ -22,7 +22,8 @@ try {
         exit;
     }
 
-    $handler = new Handler($argv[1], [new Validator()]);
+    $handler = new Handler($argv[1]);
+    $handler->setValidator(new Validator());
     $botState = new MaqeBotState();
 
     $bot = new MaqeBot(new RunnerInterpreter($botState));
@@ -31,7 +32,7 @@ try {
     $bot->addMoveStrategy(MovableEnum::R->value, new TurnRightMove($botState));
     $bot->addMoveStrategy(MovableEnum::W->value, new WalkForwardMove($botState));
 
-    $state = $bot->run($handler);
+    $state = $bot->run($handler->handle());
 
     echo 'X: ' . $state->getX() . ' Y: ' . $state->getY() . ' Direction: ' . $state->getDirection() . PHP_EOL;
 } catch (InvalidCommandException $e) {
