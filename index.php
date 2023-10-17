@@ -26,11 +26,13 @@ try {
     $handler->setValidator(new Validator());
     $botState = new MaqeBotState();
 
-    $bot = new MaqeBot(new RunnerInterpreter($botState));
+    $runnerInterpreter = new RunnerInterpreter($botState);
 
-    $bot->addMoveStrategy(MovableEnum::L->value, new TurnLeftMove($botState));
-    $bot->addMoveStrategy(MovableEnum::R->value, new TurnRightMove($botState));
-    $bot->addMoveStrategy(MovableEnum::W->value, new WalkForwardMove($botState));
+    $bot = new MaqeBot($runnerInterpreter);
+
+    $runnerInterpreter->addMoveStrategy(MovableEnum::L->value, new TurnLeftMove($botState));
+    $runnerInterpreter->addMoveStrategy(MovableEnum::R->value, new TurnRightMove($botState));
+    $runnerInterpreter->addMoveStrategy(MovableEnum::W->value, new WalkForwardMove($botState));
 
     $state = $bot->run($handler->handle());
 

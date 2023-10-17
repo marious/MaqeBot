@@ -31,16 +31,6 @@ class MaqeBot implements BotInterface
 
 
     /**
-     * @param string $command
-     * @param AbstractMove $moveStrategy
-     * @return void
-     */
-    public function addMoveStrategy(string $command, AbstractMove $moveStrategy): void
-    {
-        $this->runnerInterpreter->addMoveStrategy($command, $moveStrategy);
-    }
-
-    /**
      * Get count of steps to move
      *
      * @param array $command
