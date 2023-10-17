@@ -41,6 +41,8 @@ class MaqeBot implements BotInterface
     }
 
     /**
+     * Get count of steps to move
+     *
      * @param array $command
      * @param int $key
      * @return int

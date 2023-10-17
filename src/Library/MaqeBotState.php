@@ -11,6 +11,9 @@ class MaqeBotState implements BotStateInterface
     private int $y;
     private string $direction;
 
+    /**
+     * Initialize MaqeBotState default state.
+     */
     public function __construct()
     {
         $this->x = 0;
@@ -18,12 +21,17 @@ class MaqeBotState implements BotStateInterface
         $this->direction = DirectionEnum::NORTH->value;
     }
 
+    /**
+     *
+     * @return int
+     */
     public function getX(): int
     {
         return $this->x;
     }
 
     /**
+     *
      * @return int
      */
     public function getY(): int

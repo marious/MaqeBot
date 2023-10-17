@@ -12,5 +12,10 @@ interface BotInterface
      */
     public function run(HandlerInterface $handler): BotStateInterface;
 
-    public function addMoveStrategy(string $command, AbstractMove $moveStrategy);
+    /**
+     * @param string $command
+     * @param AbstractMove $moveStrategy
+     * @return void
+     */
+    public function addMoveStrategy(string $command, AbstractMove $moveStrategy): void;
 }

@@ -12,8 +12,17 @@ class Handler implements HandlerInterface
      * @var string
      */
     protected string $command;
-    protected array $validations;
 
+    /**
+     * @var ValidatorInterface[]
+     */
+    protected array $validations = [];
+
+    /**
+     * Array that hold Commands for movement
+     *
+     * @var array
+     */
     protected array $commandArr;
 
     /**
@@ -53,6 +62,7 @@ class Handler implements HandlerInterface
     }
 
     /**
+     * Array of commands like ['R', 'W', 33]
      * @return array
      */
     public function getCommandArr(): array
@@ -76,9 +86,17 @@ class Handler implements HandlerInterface
     private function parseCommands(string $commands): array
     {
         $pattern = '/(R|L|W\d+)/';
+        /**
+         * This will split the string to match our movement mechanism for example if string like 'LLW99'
+         * It will b ['L', 'L', 'W99']
+         */
         preg_match_all($pattern, $commands, $matches);
         $parsedCommands = [];
 
+        /**
+         * The goal of this is to separate number from W ex you have this ['L', 'L', 'W99']
+         * so it will be after this loop ['L', 'L', 'W', 99]
+         */
         foreach ($matches[0] as $match) {
             if (preg_match('/^W(\d+)$/', $match, $distanceMatch)) {
                 $parsedCommands[] = 'W';

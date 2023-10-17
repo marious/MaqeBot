@@ -36,5 +36,7 @@ try {
 
     echo 'X: ' . $state->getX() . ' Y: ' . $state->getY() . ' Direction: ' . $state->getDirection() . PHP_EOL;
 } catch (InvalidCommandException $e) {
-    echo $e->getMessage();
+    echo $e->getMessage() . PHP_EOL;
+} catch (Throwable $e) {
+    echo $e->getMessage() . PHP_EOL;
 }
