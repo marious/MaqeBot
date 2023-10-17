@@ -11,6 +11,7 @@ class WalkForwardMove extends AbstractMove
     /**
      * @param int $steps
      * @return void
+     * @throws InvalidCommandException
      */
     public function move(int $steps): void
     {
