@@ -2,7 +2,6 @@
 
 namespace App\Library\Move;
 
-use App\Interfaces\Movable;
 use App\Library\Enums\DirectionEnum;
 
 class TurnLeftMove extends AbstractMove

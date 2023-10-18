@@ -4,8 +4,8 @@ namespace App\Library;
 
 use App\Exceptions\InvalidRunnerStrategyException;
 use App\Interfaces\BotStateInterface;
+use App\Interfaces\MovableInterface;
 use App\Interfaces\RunnerInterpreterInterface;
-use App\Library\Move\AbstractMove;
 
 class RunnerInterpreter implements RunnerInterpreterInterface
 {
@@ -32,10 +32,10 @@ class RunnerInterpreter implements RunnerInterpreterInterface
 
     /**
      * @param string $command
-     * @param AbstractMove $moveStrategy
+     * @param MovableInterface $moveStrategy
      * @return void
      */
-    public function addMoveStrategy(string $command, AbstractMove $moveStrategy): void
+    public function addMoveStrategy(string $command, MovableInterface $moveStrategy): void
     {
         $this->strategies[$command] = $moveStrategy;
     }
@@ -57,7 +57,7 @@ class RunnerInterpreter implements RunnerInterpreterInterface
      * @return mixed
      * @throws InvalidRunnerStrategyException
      */
-    public function getMoveStrategy(string $command): AbstractMove
+    public function getMoveStrategy(string $command): MovableInterface
     {
         return $this->strategies[$command] ?? throw new InvalidRunnerStrategyException();
     }

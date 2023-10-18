@@ -2,6 +2,7 @@
 
 namespace App\Library\Support;
 
+use App\Exceptions\MissingDataSourceException;
 use App\Interfaces\MaqeBotIteratorInterface;
 use Iterator;
 use OutOfBoundsException;
@@ -33,6 +34,18 @@ class MaqeIterator implements Iterator, MaqeBotIteratorInterface
     public function setData(DataSource $dataSource): void
     {
         $this->data = $dataSource;
+    }
+
+    /**
+     * @return DataSource|MissingDataSourceException
+     * @throws MissingDataSourceException
+     */
+    public function getData(): DataSource|MissingDataSourceException
+    {
+        if (isset($this->data)) {
+            return $this->data;
+        }
+        throw new MissingDataSourceException('Please specify the data source item. before calling this');
     }
 
     /**

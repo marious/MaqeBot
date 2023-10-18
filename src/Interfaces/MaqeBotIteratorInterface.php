@@ -2,6 +2,7 @@
 
 namespace App\Interfaces;
 
+use App\Exceptions\MissingDataSourceException;
 use App\Library\Support\DataSource;
 
 interface MaqeBotIteratorInterface
@@ -11,6 +12,11 @@ interface MaqeBotIteratorInterface
      * @return void
      */
     public function setData(DataSource $dataSource): void;
+
+    /**
+     * @return DataSource|MissingDataSourceException
+     */
+    public function getData(): DataSource|MissingDataSourceException;
 
     /**
      * @param $key

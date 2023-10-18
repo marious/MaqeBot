@@ -2,8 +2,6 @@
 
 namespace App\Interfaces;
 
-use App\Library\Move\AbstractMove;
-
 interface RunnerInterpreterInterface
 {
 
@@ -19,10 +17,10 @@ interface RunnerInterpreterInterface
 
     /**
      * @param string $command
-     * @param AbstractMove $moveStrategy
+     * @param MovableInterface $moveStrategy
      * @return void
      */
-    public function addMoveStrategy(string $command, AbstractMove $moveStrategy): void;
+    public function addMoveStrategy(string $command, MovableInterface $moveStrategy): void;
 
     /**
      * @param string $command
@@ -33,7 +31,7 @@ interface RunnerInterpreterInterface
 
     /**
      * @param string $command
-     * @return AbstractMove
+     * @return MovableInterface
      */
-    public function getMoveStrategy(string $command): AbstractMove;
+    public function getMoveStrategy(string $command): MovableInterface;
 }

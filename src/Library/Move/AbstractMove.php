@@ -3,10 +3,10 @@
 namespace App\Library\Move;
 
 use App\Interfaces\BotStateInterface;
-use App\Interfaces\Movable;
+use App\Interfaces\MovableInterface;
 use App\Library\Enums\DirectionEnum;
 
-abstract class AbstractMove implements Movable
+abstract class AbstractMove implements MovableInterface
 {
     /**
      * Array Of Available Directions

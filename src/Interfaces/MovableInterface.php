@@ -2,7 +2,7 @@
 
 namespace App\Interfaces;
 
-interface Movable
+interface MovableInterface
 {
     /**
      * @param BotStateInterface $botState
