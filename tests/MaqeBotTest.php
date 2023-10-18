@@ -9,6 +9,9 @@ use App\Library\Move\TurnLeftMove;
 use App\Library\Move\TurnRightMove;
 use App\Library\Move\WalkForwardMove;
 use App\Library\RunnerInterpreter;
+use App\Library\Support\CommandPrepare;
+use App\Library\Support\DataSource;
+use App\Library\Support\MaqeIterator;
 use App\Services\Handler;
 use App\Services\Validator;
 use PHPUnit\Framework\TestCase;
@@ -71,7 +74,8 @@ class MaqeBotTest extends TestCase
 
     private function createBotAndRun($command): BotStateInterface
     {
-        $handler = new Handler($command);
+        $parser = new CommandPrepare(new DataSource(), new MaqeIterator());
+        $handler = new Handler($command, $parser);
         $handler->setValidator(new Validator());
         $botState = new MaqeBotState();
         $runnerInterpreter = new RunnerInterpreter($botState);

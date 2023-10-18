@@ -26,7 +26,8 @@ class TurnLeftMove extends AbstractMove
          */
         if (DirectionEnum::tryFrom($this->botState->getDirection())) {
             $currentIndex = array_search($this->botState->getDirection(), $this->directions, true);
-            $newIndex = ($currentIndex - $steps + 4) % 4;
+            $directionsCount = count($this->directions);
+            $newIndex = ($currentIndex - $steps + $directionsCount) % $directionsCount;
             $newDirection = $this->directions[$newIndex];
             $this->botState->setDirection($newDirection);
         }

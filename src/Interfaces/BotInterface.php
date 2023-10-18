@@ -7,7 +7,7 @@ use App\Library\RunnerInterpreter;
 interface BotInterface
 {
     /**
-     * @param RunnerInterpreter $runnerInterpreter\
+     * @param RunnerInterpreter $runnerInterpreter
      */
     public function __construct(RunnerInterpreter $runnerInterpreter);
 

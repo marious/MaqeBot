@@ -11,6 +11,9 @@ use App\Library\Move\TurnLeftMove;
 use App\Library\Move\TurnRightMove;
 use App\Library\Move\WalkForwardMove;
 use App\Library\RunnerInterpreter;
+use App\Library\Support\CommandPrepare;
+use App\Library\Support\DataSource;
+use App\Library\Support\MaqeIterator;
 use App\Services\Handler;
 use App\Services\Validator;
 
@@ -22,8 +25,10 @@ try {
         exit;
     }
 
-    $handler = new Handler($argv[1]);
+    $commandPrepare = new CommandPrepare(new DataSource(), new MaqeIterator());
+    $handler = new Handler($argv[1], $commandPrepare);
     $handler->setValidator(new Validator());
+
     $botState = new MaqeBotState();
 
     $runnerInterpreter = new RunnerInterpreter($botState);

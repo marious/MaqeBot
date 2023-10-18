@@ -2,12 +2,18 @@
 
 namespace App\Interfaces;
 
+use App\Library\Support\CommandPrepare;
+use App\Library\Support\MaqeIterator;
+use ArrayObject;
+
 interface HandlerInterface
 {
+
     /**
      * @param string $command
+     * @param CommandPrepare $commandPrepare
      */
-    public function __construct(string $command);
+    public function __construct(string $command, CommandPrepare $commandPrepare);
 
     /**
      * @return HandlerInterface
@@ -21,9 +27,9 @@ interface HandlerInterface
     public function validateCommand(string $command): void;
 
     /**
-     * @return array
+     * @return MaqeIterator
      */
-    public function getCommandArr(): array;
+    public function getCommandsIterator(): MaqeIterator;
 
     /**
      * @param ValidatorInterface $validator
